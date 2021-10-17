@@ -24,6 +24,7 @@ REQUIREMENTS:
 DISCLAIMER:
 TO DO:
     -Fix the lablog format in the offline mode (seems to be tabbed fsr)
+
 ================================================================
 END_OF_HEADER
 ================================================================
@@ -45,14 +46,16 @@ def download_lablog(url):
         outfile.write(request.text)
     return
 
-# Argument parser
-parser = argparse.ArgumentParser(description="Prepare the lablogs for an assembly service in BU-ISCIII")
-parser.add_argument("--offline-mode", 
-                     default=False, 
-                     action="store_true", 
-                     dest="offline", 
-                     help="Create the lablogs through offline hardcoding (might not be updated)")
-args = parser.parse_args()
+def get_arguments():
+    # parse the arguments of the service
+    parser = argparse.ArgumentParser(description="Prepare the lablogs for an assembly service in BU-ISCIII")
+    parser.add_argument("--offline-mode", default=False, action="store_true", dest="offline", help="Create the lablogs through offline hardcoding (might not be updated)")
+    
+    args = parser.parse_args()
+    
+    return args
+
+def get_service_params()
 
 # Basic scaffolding of the service
 os.mkdir("ANALYSIS")
