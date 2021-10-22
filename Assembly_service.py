@@ -7,8 +7,8 @@ AUTHOR: Guillermo J. Gorines Cordero
 MAIL: guillermo.gorines@urjc.es
 VERSION: 1.0
 CREATED: 4-10-2021
-REVISED:
-DESCRIPTION: Automatizes the assembly protocol
+REVISED: 22-10-2021
+DESCRIPTION: Automatizes the ISCIII protocols
 INPUT (by order):
 OUTPUT:
 USAGE:
@@ -48,9 +48,11 @@ def download_lablog(url):
 
 def get_arguments():
     # parse the arguments of the service
-    parser = argparse.ArgumentParser(description="Prepare the lablogs for an assembly service in BU-ISCIII")
-    parser.add_argument("--offline-mode", default=False, action="store_true", dest="offline", help="Create the lablogs through offline hardcoding (might not be updated)")
-    
+    parser = argparse.ArgumentParser(description="Prepare the lablogs for a service in BU-ISCIII.")
+    parser.add_argument("--service-id", dest="service_id", help="ID of the service.")
+    parser.add_argument("--service-type", dest="service_type", choices=["assembly","exome"] help="Type of service to be performed. Choices: assembly, exome.")
+    parser.add_argument("--offline-mode", default=False, action="store_true", dest="offline", help="Create the lablogs for the services without internet conection.")
+    parser.add_argument("--offline-path", dest="offline_path", help="Path to the directory containing the services when the --offline-mode flag is used.")
     args = parser.parse_args()
     
     return args
